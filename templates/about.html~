@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+About Page
+{% endblock %}
+
+{% block content %}
+<div class="placeholder">&nbsp;</div>
+<h3>MetaSearch is browser-based web APP written in Python and developed in Django. You can retrieve aggregated or clustered results from several search engines.</h3>
+<div class="placeholder">&nbsp;</div>
+<div class="placeholder">&nbsp;</div>
+{% endblock %}
