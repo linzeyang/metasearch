@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-
-{% block title %}
-About Page
-{% endblock %}
-
-{% block content %}
-<h3>This is about page.</h3>
-{% endblock %}

@@ -1,5 +1,0 @@
-<ul>
-{% for i in sorted_list%}
-    <li>{{ forloop.counter }} -- {{ i.title }} -- {{ i.url }}</li>
-{% endfor %}
-</ul>
