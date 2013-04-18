@@ -1,1 +1,3 @@
-Meta-Search, a django application.
+Meta-Search, a Django application.
+
+Zeyang Lin @ UCD
