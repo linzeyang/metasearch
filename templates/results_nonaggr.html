@@ -14,7 +14,8 @@
         <div id="checkboxes">
         <input type="checkbox" name="bing" id="bing" {% if showBing %}checked="checked" {% endif %}/><label for="bing">Bing</label>
         <input type="checkbox" name="blekko" id="blekko" {% if showBlekko %}checked="checked" {% endif %}/><label for="blekko">Blekko</label>
-        <input type="checkbox" name="entweb" id="entweb" {% if showEntweb %}checked="checked" {% endif %}/><label for="entweb">EntireWeb</label><br />
+        <!-- EntireWeb is temporarily disabled as its API is not available occasionally -->
+        <input type="checkbox" name="entweb" id="entweb" {% if showEntweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="entweb" title="Currently Disabled">EntireWeb</label><br />
         </div>
         <select name="aggr" id="aggr">
             <option value="false" selected="selected">Non-Aggregated</option>
