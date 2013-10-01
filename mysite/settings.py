@@ -70,11 +70,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-<<<<<<< HEAD
-    'D:/My Documents/DjangoProjects/metasearch/static',
-=======
-    '/home/zeyang/repo/metasearch/static',
->>>>>>> f6834e96e96ed06b65893be3458df48ab0f17185
+    'D:/DjangoProjects/metasearch/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -114,11 +110,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-<<<<<<< HEAD
-    "D:/My Documents/DjangoProjects/metasearch/templates",
-=======
-    "/home/zeyang/repo/metasearch/templates",
->>>>>>> f6834e96e96ed06b65893be3458df48ab0f17185
+    "D:/DjangoProjects/metasearch/templates",
 )
 
 INSTALLED_APPS = (
