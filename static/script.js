@@ -1,5 +1,7 @@
 function onReady() {
     $( "#input_query" ).focus( onFocusInputQuery );
+
+    $( "#button_search" ).button();
     $( "#button_search" ).click( validate );
 };
 
@@ -10,28 +12,28 @@ function onFocusInputQuery( event )
 
 function validate( event )
 {
-    var query = document.form1.query;
-    var bing = document.form1.bing, blekko = document.form1.blekko, entweb = document.form1.entweb;
-    var aggr = document.form1.aggr
+    var $inputQuery = $( "#input_query" );
     
-    if(query.value == '')
+    if( $inputQuery.val() === '' )
     {
-        alert("Query cannot be empty!");
-        query.focus();
+        alert( "Query cannot be empty!" );
+        $inputQuery.focus();
         return false;
     }
     else
     {
-        if(!bing.checked && !blekko.checked && !entweb.checked)
+        var numOfChecked = $( "#checkboxes :checked" ).length;
+
+        if( numOfChecked === 0 )
         {
-            alert("Select at least one search engine!");
-            bing.focus();
+            alert( "Select at least one search engine!" );
+            $( "#bing" ).focus();
             return false;
         }
-        else if((aggr.value == 'true') && ((!bing.checked && !blekko.checked) || (!blekko.checked && !entweb.checked) || (!bing.checked && !entweb.checked)))
+        else if( numOfChecked === 1 )
         {
             alert('Select at least two search engines for aggregated results!');
-            aggr.focus();
+            $( "#select_aggr" ).focus();
             return false;
         }
         else
