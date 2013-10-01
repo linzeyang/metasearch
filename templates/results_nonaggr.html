@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block metadescription %}Results for {{ raw_query }} (Non-aggregated){% endblock %}
+
+{% block title %}
+    Results for "{{ raw_query }}" (Non-aggregated) -- MetaSearch
+{% endblock %}
+
+{% block content %}
+    <form name="form1" id="form1" class="results" action="/search/" method="get" onsubmit="return validate();">
+        <img src="/static/logo_small.png" alt="MetaSearch" />
+        <input type="text" name="query" id="query" value="{{ raw_query }}" maxlength="100" onfocus="query_onfocus();" />
+        <input type="submit" id="submit" value="Search" /><br />
+        <div id="checkboxes">
+        <input type="checkbox" name="bing" id="bing" {% if showBing %}checked="checked" {% endif %}/><label for="bing">Bing</label>
+        <input type="checkbox" name="blekko" id="blekko" {% if showBlekko %}checked="checked" {% endif %}/><label for="blekko">Blekko</label>
+        <!-- EntireWeb is temporarily disabled as its API is not available occasionally -->
+        <input type="checkbox" name="entweb" id="entweb" {% if showEntweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="entweb" title="Currently Disabled">EntireWeb</label><br />
+        </div>
+        <select name="aggr" id="aggr">
+            <option value="false" selected="selected">Non-Aggregated</option>
+            <option value="true">Aggregated</option>
+        </select><br />
+        <select name="cluster" id="cluster">
+            <option value="false" {% if not cluster %}selected="selected"{% endif %}>Non-Clustered</option>
+            <option value="true" {% if cluster %}selected="selected"{% endif %}>Clustered</option>
+        </select>
+    </form>
+    <br />
+    <div class="pagelist" align="center">
+    {% for page in page_list %}
+        <a href="{{ full_path }}&page={{ page }}">
+        {% if page == current_page %}
+            <b>[{{ page }}]</b>
+        {% else %}
+            {{ page }}
+        {% endif %}
+        </a>&nbsp;&nbsp;&nbsp;
+    {% endfor %}
+    </div>
+    <br />    
+    {% if showBing %} <!- Bing Section -->
+        <img src="/static/BING.png" alt="Bing" />
+        {% if cluster %} <!- cluster is enabled -->
+            {% for cluster in bingClusters %}
+                <p><b>Cluster {{ forloop.counter }}</b></p>
+                <ul>
+                {% for i in cluster %}
+                    <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title }}</a><br />
+                    <span class="displayurl">{{ i.displayurl }}</span><br />
+                    <p>{{ i.snippet }}</p></li>
+                {% endfor %}
+                </ul>
+            {% empty %}
+                <p class="error" align="center">ERROR: No results retrieved from Bing</p>
+            {% endfor %}
+        {% else %} <!- cluster is disabled -->
+            <ul>
+            {% for i in bingList %}
+                <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title }}</a><br />
+                <span class="displayurl">{{ i.displayurl }}</span><br />
+                <p>{{ i.snippet }}</p></li>
+            {% empty %}
+                <p class="error" align="center">ERROR: No results retrieved from Bing</p>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <hr />
+    {% endif %}
+    {% if showBlekko %} <!- Blekko Section -->
+        <img src="/static/Blekko.png" alt="Blekko" />
+        {% if cluster %} <!- cluster is enabled -->
+            {% for cluster in blekkoClusters %}
+                <p><b>Cluster {{ forloop.counter }}</b></p>
+                <ul>
+                {% for i in cluster %}
+                    <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title|safe }}</a><br />
+                    <span class="displayurl">{{ i.displayurl|safe }}</span><br />
+                    <p>{{ i.snippet|safe }}</p></li>
+                {% endfor %}
+                </ul>
+            {% empty %}
+                <p class="error" align="center">ERROR: No results retrieved from Blekko</p>
+            {% endfor %}
+        {% else %} <!- cluster is disabled -->
+            <ul>
+            {% for i in blekkoList %}
+                <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title|safe }}</a><br />
+                <span class="displayurl">{{ i.displayurl|safe }}</span><br />
+                <p>{{ i.snippet|safe }}</p></li>
+            {% empty %}
+                <p class="error" align="center">ERROR: No results retrieved from Blekko</p>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <hr />
+    {% endif %}
+    {% if showEntweb %} <!- EntireWeb Section -->
+        <img src="/static/EntireWeb.png" alt="EntireWeb" />
+        {% if cluster %} <!- cluster is enabled -->
+            {% for cluster in entwebClusters %}
+                <p><b>Cluster {{ forloop.counter }}</b></p>
+                <ul>
+                {% for i in cluster %}
+                    <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title }}</a><br />
+                    <span class="displayurl">{{ i.displayurl }}</span><br />
+                    <p>{{ i.snippet }}</p></li>
+                {% endfor %}
+                </ul>
+            {% empty %}
+                <p class="error" align="center">ERROR: No results retrieved from EntireWeb</p>
+            {% endfor %}
+        {% else %} <!- cluster is disabled -->
+            <ul>
+            {% for i in entwebList %}
+                <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title }}</a><br />
+                <span class="displayurl">{{ i.displayurl }}</span><br />
+                <p>{{ i.snippet }}</p></li>
+            {% empty %}
+                <p class="error" align="center">ERROR: No results retrieved from EntireWeb</p>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <hr />
+    {% endif %}
+    <br />
+    <div class="pagelist" align="center">
+    {% for page in page_list %}
+        <a href="{{ full_path }}&page={{ page }}">
+        {% if page == current_page %}
+            <b>[{{ page }}]</b>
+        {% else %}
+            {{ page }}
+        {% endif %}
+        </a>&nbsp;&nbsp;&nbsp;
+    {% endfor %}
+    </div><br />
+{% endblock %}
