@@ -6,7 +6,7 @@
 - Client-side and server-side validation
 - Aggregated and non-aggregated search mode
 - Simple clustering feature
----------------------------------------
+- - -
 ## Installation:
 
 1. Make sure the following software are installed:
@@ -55,7 +55,7 @@
     ```
     
 7. Launch Apache or your Django server, then enter the URL of the server in any browser.
----------------------------------------
+- - -
 ## Contact:
 Zeyang Lin
 zeyanglin2013@gmail.com
