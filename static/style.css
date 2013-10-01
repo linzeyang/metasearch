@@ -85,7 +85,7 @@ select {
     margin-left: 350px;
 }
 
-.start #query {
+.start #input_query {
     margin-left: 310px;
 }
 
@@ -93,7 +93,7 @@ select {
     margin-left: 50px;
 }
 
-#submit {
+#button_search {
     width: 90px;
     height: 40px;
     text-align: center;

@@ -1,4 +1,14 @@
-function validate() 
+function onReady() {
+    $( "#input_query" ).focus( onFocusInputQuery );
+    $( "#button_search" ).click( validate );
+};
+
+function onFocusInputQuery( event )
+{
+    $( "#input_query" ).val("");
+};
+
+function validate( event )
 {
     var query = document.form1.query;
     var bing = document.form1.bing, blekko = document.form1.blekko, entweb = document.form1.entweb;
@@ -29,9 +39,4 @@ function validate()
             return true;
         }
     }
-};
-
-function query_onfocus()
-{
-    document.form1.query.value = '';
 };
