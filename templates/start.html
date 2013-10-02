@@ -10,11 +10,11 @@ MetaSearch
 
 {% block content %}
 
-<img src="/static/logo.png" alt="MetaSearch" id="logo"/>
+<img src="/static/logo.png" id="logo" alt="MetaSearch" />
 
 <form id="form_search" class="form-signin start" action="/search/" method="get">
   <input type="text" name="query" id="input_query" class="form-control" maxlength="100" placeholder="Enter your query here" autofocus />
-  <input type="submit" id="button_search" class="btn btn-lg btn-primary" value="Search" /><br />
+  <input type="submit" id="button_search" class="btn btn-lg btn-primary" value="Search" />
   <div id="checkboxes">
     <input type="checkbox" name="bing" id="box_bing" checked="checked" /><label for="box_bing">Bing</label>
     <input type="checkbox" name="blekko" id="box_blekko" checked="checked" /><label for="box_blekko">Blekko</label>
