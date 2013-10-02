@@ -13,14 +13,14 @@ MetaSearch
 <div class="placeholder">&nbsp;</div>
 <img src="/static/logo.png" alt="MetaSearch" id="logo"/><br />
 
-<form id="form_main" class="start" action="/search/" method="get">
+<form id="form_search" class="start" action="/search/" method="get">
   <input type="text" name="query" id="input_query" maxlength="100" placeholder="Enter your query here" />
   <input type="submit" id="button_search" value="Search" /><br />
   <div id="checkboxes">
-    <input type="checkbox" name="bing" id="bing" checked="checked" /><label for="bing">Bing</label>
-    <input type="checkbox" name="blekko" id="blekko" checked="checked" /><label for="blekko">Blekko</label>
+    <input type="checkbox" name="bing" id="box_bing" checked="checked" /><label for="box_bing">Bing</label>
+    <input type="checkbox" name="blekko" id="box_blekko" checked="checked" /><label for="box_blekko">Blekko</label>
     <!-- EntireWeb is temporarily disabled as its API is not available occasionally -->
-    <input type="checkbox" name="entweb" id="entweb" title="Currently Disabled" disabled /><label for="entweb" title="Currently Disabled" >EntireWeb</label><br />
+    <input type="checkbox" name="entweb" id="box_entweb" title="Currently Disabled" disabled /><label for="box_entweb">EntireWeb</label><br />
   </div>
   <select name="aggr" id="select_aggr">
     <option value="false" selected="selected">Non-Aggregated</option>

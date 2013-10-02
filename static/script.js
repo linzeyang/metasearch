@@ -27,7 +27,7 @@ function validate( event )
         if( numOfChecked === 0 )
         {
             alert( "Select at least one search engine!" );
-            $( "#bing" ).focus();
+            $( "#box_bing" ).focus();
             return false;
         }
         else if( numOfChecked === 1 )
