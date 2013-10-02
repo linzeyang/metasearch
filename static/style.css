@@ -1,96 +1,88 @@
 @charset "utf-8";
 
-image {
-	border:0px;
+img {
+	border: 0px;
 }
 
 a:link {
-	text-decoration:none;
-	color:#7D59AA;
+	text-decoration: none;
+	color: #7D59AA;
 }
 a:hover {
-	text-decoration:underline;
-	color:#039;
+	text-decoration: underline;
+	color: #039;
 }
 a:visited {
-	color:#7D59AA;
+	color: #7D59AA;
 }
 a:active {
 	text-decoration:underline;
-	color:#7D59AA;
+	color: #7D59AA;
 }
 
 body {
 	margin: 0px;
-	background-color: #DDD;
+	background-color: #EEE;
 }
 
 #mainwrapper {
-	margin: 0px  auto; /* Here "auto" makes mainwrapper center */
-	padding: 0px;
-	height: auto;
-	width: 980px;
+	margin: 0px auto;
+	max-width: 980px;
+    padding: 0px;
 	font-family: Arial, san-serif;
-
 }
 
 #logo {
-    margin-left: 300px;
+    display: block;
+    margin: 90px auto 30px;
 }
 
 #logo_small {
     
 }
 
-.placeholder {
-    width: 980px;
-    height: 90px;
-}
-
 .error {
     color: #F00;
+    font-weight: bold;
 }
 
 /* Form style begin */
-input[type="text"] {
-    width: 350px;
-    height: 40px;
+
+#form_search {
+    max-width: 370px;
+    margin: 0 auto;
+}
+
+#input_query {
     border: 1px solid #AAA;
-    background: #ffc;
+    height: auto;
+    background: #FFC;
     margin-top: 10px;
+    margin-bottom: 10px;
     font-family: Arial, san-serif;
-    font-size: 150%;
+    font-size: 1.9em;
 }
 
-input[type="checkbox"] {
-    width: 40px;
-    height: 30px;
-    margin: 10px;
-    text-align: center;
-    font-size: 120%;
-}
-
-select {
-    width: 160px;
-    height: 30px;
-    text-align: center;
-    margin-left: 410px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-family: Arial, san-serif;
-    font-size: 120%;
+#button_search {
+    display: block;
+    margin: 10px auto;
 }
 
 #checkboxes {
-    margin-left: 350px;
+    height: auto;
+    text-align: center;
+    font-size: 1.5em;
 }
 
-.start #input_query {
-    margin-left: 310px;
+select {
+    text-align: center;
+    margin: 5px auto;
+    font-family: Arial, san-serif;
+    font-size: 1.5em;
 }
 
-.results #query {
-    margin-left: 50px;
+#checkboxes {
+    
 }
 
 /* Form style finish */
@@ -122,6 +114,6 @@ ul {
 /* Footer style begin */
 #footer {
     margin-top: 60px;
-    font-size: 135%;
+    font-size: 1.7em;
 }
 /* Footer style finish */

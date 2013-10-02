@@ -1,7 +1,6 @@
 function onReady() {
     $( "#input_query" ).focus( onFocusInputQuery );
 
-    $( "#button_search" ).button();
     $( "#button_search" ).click( validate );
 };
 
@@ -27,14 +26,21 @@ function validate( event )
         if( numOfChecked === 0 )
         {
             alert( "Select at least one search engine!" );
-            $( "#box_bing" ).focus();
+            $( "#checkboxes input[type='checkbox']" ).first().focus();
             return false;
         }
         else if( numOfChecked === 1 )
         {
-            alert('Select at least two search engines for aggregated results!');
-            $( "#select_aggr" ).focus();
-            return false;
+            if( $( "#select_aggr" ).val() === "true" )
+            {
+                alert('Select at least two search engines for aggregated results!');
+                $( "#checkboxes input[type='checkbox']" ).first().focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         else
         {

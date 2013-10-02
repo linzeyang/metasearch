@@ -10,7 +10,7 @@
   <form id="form_search" class="results" action="/search/" method="get">
     <img src="/static/logo_small.png" id="logo_small" alt="MetaSearch" />
     <input type="text" name="query" id="input_query" value="{{ raw_query }}" maxlength="100" />
-    <input type="submit" id="button_submit" value="Search" /><br />
+    <input type="submit" id="button_search" value="Search" /><br />
     <div id="checkboxes">
       <input type="checkbox" name="bing" id="box_bing" {% if showBing %}checked="checked" {% endif %}/><label for="box_bing">Bing</label>
       <input type="checkbox" name="blekko" id="box_blekko" {% if showBlekko %}checked="checked" {% endif %}/><label for="box_blekko">Blekko</label>
