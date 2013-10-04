@@ -1,5 +1,2 @@
 *.pyc
-*.html~
-*.css~
-*.js~
-*.txt~
+*~
