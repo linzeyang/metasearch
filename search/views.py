@@ -113,7 +113,7 @@ def search(request):
         
 ##################################################################################
 
-def validate(raw_query, showBing, showBlekko, showEntweb, aggr, cluster):
+def validate(raw_query, showBing, showBlekko, showEntweb, aggr):
     """
     Validate the parameters of HTTP Request on server side.
     Return a list of error strings.
