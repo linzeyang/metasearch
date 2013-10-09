@@ -21,7 +21,7 @@ def search(request):
     aggr = request.GET.get('aggr', '')
     cluster = request.GET.get('cluster', '')
     
-    errors = validate(raw_query, showBing, showBlekko, showEntweb, aggr, cluster)
+    errors = validate(raw_query, showBing, showBlekko, showEntweb, aggr)
     
     if errors:
         return render_to_response('start.html', {'errors' : errors})
