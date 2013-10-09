@@ -9,37 +9,39 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> -->
     <script src="/static/script.js"></script>
+    {% block local_head_script %}{% endblock %}
     
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css" /> -->
     <link rel="stylesheet" href="/static/style.css" />
+    {% block local_head_style %}{% endblock %}
     
     <title>{% block title %}Template Page{% endblock %}</title>
   </head>
 
   <body>
-    <div id="mainwrapper">
+    <div class="container" id="mainwrapper">
 
       {% block content %}
         <h1>content placeholder</h1>
       {% endblock %}
 
-      <div id="footer" align="center">
-        <p>
+      <div id="footer">
+        <p class="text-center">
           <a href="/">START</a>&nbsp;&nbsp;&nbsp;
           <a href="/about/">ABOUT</a>&nbsp;&nbsp;&nbsp;
           <a href="/help/">HELP</a>&nbsp;&nbsp;&nbsp;
           <a href="mailto:zeyanglin2013@gmail.com?subject=Feedback">FEEDBACK</a>
         </p>
-        <p>
+        <p class="text-center">
           Zeyang Lin&nbsp;&copy;&nbsp;2013&nbsp;&nbsp;
           <a href="http://www.linkedin.com/in/zeyanglin" target="_blank"><img src="/static/linkedin.png" alt="LinkedIn" /></a>&nbsp;&nbsp;&nbsp;
           <a href="https://github.com/linzeyang" target="_blank"><img src="/static/github.png" alt="Github" /></a>&nbsp;&nbsp;&nbsp;
           <a href="https://twitter.com/zeyanglin" target="_blank"><img src="/static/twitter.png" alt="Twitter" /></a>&nbsp;&nbsp;&nbsp;
           <a href="https://www.facebook.com/linzeyang" target="_blank"><img src="/static/facebook.png" alt="Facebook" /></a><br />
         </p>
-        <p>Powered by <a href="https://www.djangoproject.com" target="_blank">Django</a></p>
+        <p class="text-center">Powered by <a href="https://www.djangoproject.com" target="_blank">Django</a></p>
       </div>
 
     </div>

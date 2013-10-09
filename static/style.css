@@ -1,91 +1,58 @@
 @charset "utf-8";
 
-img {
-	border: 0px;
-}
-
-a:link {
-	text-decoration: none;
-	color: #7D59AA;
-}
-a:hover {
-	text-decoration: underline;
-	color: #039;
-}
-a:visited {
-	color: #7D59AA;
-}
-a:active {
-	text-decoration:underline;
-	color: #7D59AA;
-}
-
-body {
-	margin: 0px;
-	background-color: #EEE;
-}
-
-#mainwrapper {
-	margin: 0px auto;
-	max-width: 980px;
-    padding: 0px;
-	font-family: Arial, san-serif;
-}
-
-#logo {
-    display: block;
-    margin: 90px auto 30px;
-}
-
-#logo_small {
-    
-}
-
 .error {
     color: #F00;
     font-weight: bold;
 }
 
-/* Form style begin */
+#logo_small {
+    position: absolute;
+    left: 80px;
+    top: 35px;
+}
 
-#form_search {
-    max-width: 370px;
-    margin: 0 auto;
+/* Form style begin */
+form.start {
+    margin-top: 100px;
+}
+
+form.start #row_input_query {
+    margin-bottom: 20px;
+}
+
+form.results {
+    margin-top: 30px;
 }
 
 #input_query {
     border: 1px solid #AAA;
     height: auto;
     background: #FFC;
-    margin-top: 10px;
-    margin-bottom: 10px;
     font-family: Arial, san-serif;
     font-size: 1.9em;
 }
 
-#button_search {
-    display: block;
-    margin: 10px auto;
-}
-
 #checkboxes {
-    height: auto;
+    margin-top: 20px;
     text-align: center;
     font-size: 1.5em;
 }
 
-select {
+#selects {
     text-align: center;
-    margin: 5px auto;
+}
+
+select {
+    width: 180px;
     font-family: Arial, san-serif;
     font-size: 1.5em;
 }
 
-#checkboxes {
-    
-}
-
 /* Form style finish */
+
+.pagelist {
+    font-size: 1.5em;
+}
 
 /* Item List style begin */
 ul {
@@ -113,7 +80,7 @@ ul {
 
 /* Footer style begin */
 #footer {
-    margin-top: 60px;
+    margin-top: 100px;
     font-size: 1.7em;
 }
 /* Footer style finish */

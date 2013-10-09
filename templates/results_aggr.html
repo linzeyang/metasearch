@@ -7,27 +7,33 @@
 {% endblock %}
 
 {% block content %}
-  <form id="form_search" class="form-signin results" action="/search/" method="get">
-    <img src="/static/logo_small.png" id="logo_small" alt="MetaSearch" />
-    <input type="text" name="query" id="input_query" class="form-control" value="{{ raw_query }}" maxlength="100" />
-    <input type="submit" id="button_search" class="btn btn-lg btn-primary" value="Search" />
-    <div id="checkboxes">
+  <img src="/static/logo_small.png" id="logo_small" alt="MetaSearch" />
+  <form id="form_search" class="container results" action="/search/" method="get">
+    <div class="row" id="row_input_query">
+      <input type="text" name="query" id="input_query" class="col-md-5 col-md-offset-3" 
+        value="{{ raw_query }}" maxlength="100" placeholder="Enter your query here" />
+      <input type="submit" id="button_search" class="btn btn-lg btn-primary col-md-2 col-md-offset-1" value="Search" />
+    </div>
+
+    <div class="row" id="checkboxes">
       <input type="checkbox" name="bing" id="box_bing" {% if showBing %}checked="checked" {% endif %}/><label for="box_bing">Bing</label>
       <input type="checkbox" name="blekko" id="box_blekko" {% if showBlekko %}checked="checked" {% endif %}/><label for="box_blekko">Blekko</label>
       <!-- EntireWeb is temporarily disabled as its API is not available occasionally -->
-    <input type="checkbox" name="entweb" id="box_entweb" {% if showEntweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="box_entweb">EntireWeb</label><br />
+      <input type="checkbox" name="entweb" id="box_entweb" {% if showEntweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="box_entweb">EntireWeb</label><br />
     </div>
-    <select name="aggr" id="select_aggr">
-      <option value="false">Non-Aggregated</option>
-      <option value="true" selected="selected">Aggregated</option>
-    </select>
-    <select name="cluster" id="select_cluster">
-      <option value="false" {% if not cluster %}selected="selected"{% endif %}>Non-Clustered</option>
-      <option value="true" {% if cluster %}selected="selected"{% endif %}>Clustered</option>
-    </select>
+
+    <div class="row" id="selects">
+      <select name="aggr" id="select_aggr">
+        <option value="false">Non-Aggregated</option>
+        <option value="true" selected="selected">Aggregated</option>
+      </select>
+      <select name="cluster" id="select_cluster">
+        <option value="false" {% if not cluster %}selected="selected"{% endif %}>Non-Clustered</option>
+        <option value="true" {% if cluster %}selected="selected"{% endif %}>Clustered</option>
+      </select>
+    </div>
   </form>
-  <br />
-  
+  <br />  
   <div class="pagelist" align="center">
   {% for page in page_list %}
     <a href="{{ full_path }}&page={{ page }}">
