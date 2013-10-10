@@ -19,7 +19,11 @@ MetaSearch
     <input type="text" name="query" id="input_query" class="col-md-6 col-md-offset-3" 
       maxlength="100" placeholder="Enter your query here" autofocus />    
   </div>
-
+  {% if errors %}
+    {% for e in errors %}
+    <p class="error text-danger lead">{{ e }}</p>
+    {% endfor %}
+  {% endif %}
   <div class="row">
     <input type="submit" id="button_search" class="btn btn-lg btn-primary col-md-2 col-md-offset-5" value="Search" />
   </div>
@@ -42,12 +46,5 @@ MetaSearch
     </select>
   </div>
 </form>
-
-{% if errors %}
-  {% for e in errors %}
-  <p class="error" align="center">{{ e }}</p>
-  {% endfor %}
-{% endif %}
-<div class="placeholder">&nbsp;</div>
 
 {% endblock %}
