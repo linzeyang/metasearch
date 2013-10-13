@@ -16,10 +16,10 @@
     </div>
     
     <div class="row" id="checkboxes">
-      <input type="checkbox" name="bing" id="box_bing" {% if showBing %}checked="checked" {% endif %}/><label for="box_bing">Bing</label>
-      <input type="checkbox" name="blekko" id="box_blekko" {% if showBlekko %}checked="checked" {% endif %}/><label for="box_blekko">Blekko</label>
+      <input type="checkbox" name="bing" id="box_bing" {% if show_bing %}checked="checked" {% endif %}/><label for="box_bing">Bing</label>
+      <input type="checkbox" name="blekko" id="box_blekko" {% if show_blekko %}checked="checked" {% endif %}/><label for="box_blekko">Blekko</label>
       <!-- EntireWeb is temporarily disabled as its API is not available occasionally -->
-      <input type="checkbox" name="entweb" id="box_entweb" {% if showEntweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="box_entweb">EntireWeb</label><br />
+      <input type="checkbox" name="entweb" id="box_entweb" {% if show_entweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="box_entweb">EntireWeb</label><br />
     </div>
 
     <div class="row" id="selects">
@@ -46,10 +46,10 @@
   {% endfor %}
   </div>
   <br />    
-  {% if showBing %} <!-- Bing Section -->
+  {% if show_bing %} <!-- Bing Section -->
     <img src="/static/BING.png" alt="Bing" />
     {% if cluster %} <!-- cluster is enabled -->
-      {% for cluster in bingClusters %}
+      {% for cluster in bing_clusters %}
         <p><b>Cluster {{ forloop.counter }}</b></p>
         <ul>
         {% for i in cluster %}
@@ -63,7 +63,7 @@
       {% endfor %}
     {% else %} <!-- cluster is disabled -->
       <ul>
-      {% for i in bingList %}
+      {% for i in bing_list %}
         <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title }}</a><br />
         <span class="displayurl">{{ i.displayurl }}</span><br />
         <p>{{ i.snippet }}</p></li>
@@ -74,10 +74,10 @@
     {% endif %}
     <hr />
   {% endif %}
-  {% if showBlekko %} <!-- Blekko Section -->
+  {% if show_blekko %} <!-- Blekko Section -->
     <img src="/static/Blekko.png" alt="Blekko" />
     {% if cluster %} <!-- cluster is enabled -->
-      {% for cluster in blekkoClusters %}
+      {% for cluster in blekko_clusters %}
         <p><b>Cluster {{ forloop.counter }}</b></p>
         <ul>
         {% for i in cluster %}
@@ -91,7 +91,7 @@
       {% endfor %}
     {% else %} <!-- cluster is disabled -->
       <ul>
-      {% for i in blekkoList %}
+      {% for i in blekko_list %}
         <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title|safe }}</a><br />
         <span class="displayurl">{{ i.displayurl|safe }}</span><br />
         <p>{{ i.snippet|safe }}</p></li>
@@ -102,10 +102,10 @@
     {% endif %}
     <hr />
   {% endif %}
-  {% if showEntweb %} <!-- EntireWeb Section -->
+  {% if show_entweb %} <!-- EntireWeb Section -->
     <img src="/static/EntireWeb.png" alt="EntireWeb" />
     {% if cluster %} <!-- cluster is enabled -->
-      {% for cluster in entwebClusters %}
+      {% for cluster in entweb_clusters %}
         <p><b>Cluster {{ forloop.counter }}</b></p>
         <ul>
         {% for i in cluster %}
@@ -119,7 +119,7 @@
       {% endfor %}
     {% else %} <!-- cluster is disabled -->
       <ul>
-      {% for i in entwebList %}
+      {% for i in entweb_list %}
         <li class="item"><a href="{{ i.url }}" target="_blank">{{ i.title }}</a><br />
         <span class="displayurl">{{ i.displayurl }}</span><br />
         <p>{{ i.snippet }}</p></li>

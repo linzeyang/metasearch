@@ -16,10 +16,10 @@
     </div>
 
     <div class="row" id="checkboxes">
-      <input type="checkbox" name="bing" id="box_bing" {% if showBing %}checked="checked" {% endif %}/><label for="box_bing">Bing</label>
-      <input type="checkbox" name="blekko" id="box_blekko" {% if showBlekko %}checked="checked" {% endif %}/><label for="box_blekko">Blekko</label>
+      <input type="checkbox" name="bing" id="box_bing" {% if show_bing %}checked="checked" {% endif %}/><label for="box_bing">Bing</label>
+      <input type="checkbox" name="blekko" id="box_blekko" {% if show_blekko %}checked="checked" {% endif %}/><label for="box_blekko">Blekko</label>
       <!-- EntireWeb is temporarily disabled as its API is not available occasionally -->
-      <input type="checkbox" name="entweb" id="box_entweb" {% if showEntweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="box_entweb">EntireWeb</label><br />
+      <input type="checkbox" name="entweb" id="box_entweb" {% if show_entweb %}checked="checked" {% endif %} title="Currently Disabled" disabled /><label for="box_entweb">EntireWeb</label><br />
     </div>
 
     <div class="row" id="selects">

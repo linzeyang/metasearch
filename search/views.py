@@ -41,9 +41,9 @@ def search(request):
         lists = non_aggr_search(queries, show_bing, show_blekko, show_entweb, page)
         
         if cluster == 'true':
-            bingClusters = make_cluster(lists[0])
-            blekkoClusters = make_cluster(lists[1])
-            entwebClusters = make_cluster(lists[2])
+            bing_clusters = make_cluster(lists[0])
+            blekko_clusters = make_cluster(lists[1])
+            entweb_clusters = make_cluster(lists[2])
             
             return render(request, 'results_nonaggr.html', 
                     {
@@ -52,9 +52,9 @@ def search(request):
                         'show_blekko' : show_blekko,
                         'show_entweb' : show_entweb,
                         'cluster' : True,
-                        'bingClusters' : bingClusters,
-                        'blekkoClusters' : blekkoClusters, 
-                        'entwebClusters' : entwebClusters,
+                        'bing_clusters' : bing_clusters,
+                        'blekko_clusters' : blekko_clusters, 
+                        'entweb_clusters' : entweb_clusters,
                         'full_path' : full_path,
                         'page_list' : page_list,
                         'current_page': page
@@ -128,10 +128,7 @@ def validate(raw_query, show_bing, show_blekko, show_entweb, aggr):
     
     if not (show_bing or show_blekko or show_entweb):
         errors.append('ERROR: Choose at least one search engine!')
-    elif aggr == 'true' and 
-            ((not show_bing and not show_blekko) or 
-             (not show_blekko and not show_entweb) or 
-             (not show_bing and not show_entweb)):
+    elif aggr == 'true' and ((not show_bing and not show_blekko) or (not show_blekko and not show_entweb) or (not show_bing and not show_entweb)):
         errors.append('ERROR: Choose at lease two search engines for aggregated results!')
     
     return errors
