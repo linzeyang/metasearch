@@ -1,12 +1,12 @@
 # Create your views here.
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 def start(request):
-    return render_to_response('start.html')
+    return render(request, 'start.html')
     
 def about(request):
-    return render_to_response('about.html')
+    return render(request, 'about.html')
     
 def help(request):
-    return render_to_response('help.html')
+    return render(request, 'help.html')
     

@@ -5,7 +5,7 @@ stopword_list = ['a', 'about', 'above', 'across', 'after', 'again', 'against', '
 
 punctuations = '~`!@#$%^&*_+={}[]|:;"\',\.<>/?'
 
-def stringProcess(raw_string):
+def string_process(raw_string):
     """
     Normalize the query with support for Boolean operators.
     Return queries suitable for each search engine.
@@ -38,15 +38,17 @@ def stringProcess(raw_string):
             urllib.quote(' '.join(blekko_tokens)), 
             urllib.quote(' '.join(entweb_tokens))]
             
-def snippetProcess(snippet):
+def snippet_process(snippet):
     """
     Split a snippet into a list of tokens, excluding stopwords.
     """
     raw_tokens = snippet.split()
     tokens = []
+
     for token in raw_tokens:
         token = token.strip(punctuations).lower()
-        if not (token in tokens or token in stopword_list or token == ''):
+
+        if not ((token in tokens) or (token in stopword_list) or (token == '')):
             tokens.append(token)
     
     return tokens
@@ -56,13 +58,15 @@ def flatten(lis):
     Flattens a list.
     Return the flattened list.
     """
-    if type(lis) != type([]): 
+    if type(lis) != type([]):
         return [lis]
-    if lis == []: 
+
+    if lis == []:
         return lis
+
     return flatten(lis[0]) + flatten(lis[1:])
 
-def makeCluster(result_list):
+def make_cluster(result_list):
     """
     Resemble a list of result items into several clusters.
     Return a list of clusters.
@@ -75,7 +79,7 @@ def makeCluster(result_list):
     clusters = []
     
     for i in result_list:
-        tokens_list.append(snippetProcess(i.snippet))
+        tokens_list.append(snippet_process(i.snippet))
         
     while len(clusters) < num_cluster - 1:
         init_lenth = len(clusters)
@@ -87,13 +91,15 @@ def makeCluster(result_list):
                 token_dict[token] += 1
             else:
                 token_dict[token] = 1
-        sorted_tokens = sorted(token_dict.items(), key = lambda t:t[1], reverse = True)
+
+        sorted_tokens = sorted(token_dict.items(), key=lambda t:t[1], reverse=True)
                 
         for token in sorted_tokens:
             if 0.3 * len(result_list) <= token[1] <= 0.7 * len(result_list):
 	            single_cluster = []
 	            rest_results = []
 	            rest_tokens_list = []
+                
 	            for tokens in tokens_list:
 		            if token[0] in tokens:
 			            single_cluster.append(result_list[tokens_list.index(tokens)])
@@ -105,6 +111,7 @@ def makeCluster(result_list):
 	            result_list = rest_results
 	            tokens_list = rest_tokens_list
 	            break
+
         if len(clusters) == init_lenth:
             clusters.append(result_list)
             break

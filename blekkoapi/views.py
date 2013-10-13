@@ -11,7 +11,7 @@ class Item(object):
         self.base_score = [0, 0, 0]
         self.weighted_score = 0.0
         
-def getJsonObj(query, page_num, result_per_page):
+def get_json_obj(query, page_num, result_per_page):
     base_url = 'http://blekko.com/ws/?auth=%s&q=%s+/json+/ps=%s&p=%s'
     key = 'f4c8acf3'
     ps = result_per_page
@@ -20,14 +20,14 @@ def getJsonObj(query, page_num, result_per_page):
     
     return requests.get(url).json()
     
-def getItemList(query, page_num, result_per_page):
-    itemList = []
-    jsonObj = getJsonObj(query, page_num, result_per_page)
+def get_item_list(query, page_num, result_per_page):
+    item_list = []
+    json_obj = get_json_obj(query, page_num, result_per_page)
     
-    if not jsonObj:
+    if not json_obj:
         return []
     
-    for i in jsonObj["RESULT"]:
-        itemList.append(Item(i))
+    for i in json_obj["RESULT"]:
+        item_list.append(Item(i))
         
-    return itemList
+    return item_list
