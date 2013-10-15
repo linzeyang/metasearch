@@ -3,10 +3,10 @@ from operator import attrgetter
 
 from django.shortcuts import render
 
-from bingapi.views import get_item_list as bing_get_item_list
-from blekkoapi.views import get_item_list as blekko_get_item_list
-from entwebapi.views import get_item_list as entweb_get_item_list
-from texthandle.views import string_process, make_cluster
+from metasearch.bingapi.views import get_item_list as bing_get_item_list
+from metasearch.blekkoapi.views import get_item_list as blekko_get_item_list
+from metasearch.entwebapi.views import get_item_list as entweb_get_item_list
+from metasearch.texthandle.views import string_process, make_cluster
 
 def search(request):
     """
@@ -24,7 +24,7 @@ def search(request):
     errors = validate(raw_query, show_bing, show_blekko, show_entweb, aggr)
     
     if errors:
-        return render(request, 'start.html', {'errors' : errors})
+        return render(request, 'metasearch/start.html', {'errors' : errors})
     
     queries = string_process(raw_query)
     
@@ -45,7 +45,7 @@ def search(request):
             blekko_clusters = make_cluster(lists[1])
             entweb_clusters = make_cluster(lists[2])
             
-            return render(request, 'results_nonaggr.html', 
+            return render(request, 'metasearch/results_nonaggr.html', 
                     {
                         'raw_query' : raw_query,
                         'show_bing' : show_bing,
@@ -62,7 +62,7 @@ def search(request):
                     )
         
         elif cluster == 'false' or cluster == '':
-            return render(request, 'results_nonaggr.html', 
+            return render(request, 'metasearch/results_nonaggr.html', 
                     {
                         'raw_query' : raw_query,
                         'show_bing' : show_bing,
@@ -83,7 +83,7 @@ def search(request):
         if cluster == 'true':
             clusters = make_cluster(result_list)
 
-            return render(request, 'results_aggr.html', 
+            return render(request, 'metasearch/results_aggr.html', 
                     {
                         'raw_query' : raw_query,
                         'show_bing' : show_bing,
@@ -98,7 +98,7 @@ def search(request):
                     )
             
         elif cluster == 'false' or cluster == '':
-            return render(request, 'results_aggr.html', 
+            return render(request, 'metasearch/results_aggr.html', 
                     {
                         'raw_query' : raw_query,
                         'show_bing' : show_bing,

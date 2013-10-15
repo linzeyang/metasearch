@@ -4,7 +4,7 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('search.views',
+urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^mysite/', include('mysite.foo.urls')),
@@ -14,6 +14,8 @@ urlpatterns = patterns('search.views',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^', 'search'),
+    url(r'^$', 'metasearch.views.start', name="start"),
+    url(r'^search/', 'metasearch.search.views.search', name="search"),    
+    url(r'^about/$', 'metasearch.views.about', name="about"),
+    url(r'^help/$', 'metasearch.views.help', name="help"),
 )
-

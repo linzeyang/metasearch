@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% extends "metasearch/base.html" %}
+
+{% load staticfiles %}
 
 {% block metadescription %}Results for {{ raw_query }} (Aggregated){% endblock %}
 
@@ -7,8 +9,8 @@
 {% endblock %}
 
 {% block content %}
-  <img src="/static/logo_small.png" id="logo_small" alt="MetaSearch" />
-  <form id="form_search" class="container results" action="/search/" method="get">
+  <img src="{% static 'metasearch/images/logo_small.png' %}" id="logo_small" alt="MetaSearch" />
+  <form id="form_search" class="container results" action="" method="get">
     <div class="row" id="row_input_query">
       <input type="text" name="query" id="input_query" class="col-md-5 col-md-offset-3" 
         value="{{ raw_query }}" maxlength="100" placeholder="Enter your query here" />
@@ -53,7 +55,7 @@
       {% for i in cluster%}
         <li class="item">{{ forloop.counter }} -- <a href="{{ i.url }}" target="_blank">{{ i.title|safe }}</a>
         {% for s in i.source %}
-          &nbsp;<img src="/static/{{ s }}_small.png" alt="{{ s }}" />&nbsp;
+          &nbsp;<img src="/static/metasearch/images/{{s}}_small.png" alt="{{ s }}" />&nbsp;
         {% endfor %}<br />
         <span class="displayurl">{{ i.displayurl|safe }}</span><br />
         <p>{{ i.snippet|safe }}</p>
@@ -67,7 +69,9 @@
     <ul>
     {% for i in result_list%}
       <li class="item">{{ forloop.counter }}--<a href="{{ i.url }}" target="_blank">{{ i.title|safe }}</a>
-      {% for s in i.source %}&nbsp;<img src="/static/{{ s }}_small.png" alt="{{ s }}" />&nbsp;{% endfor %}<br />
+      {% for s in i.source %}
+        &nbsp;<img src="/static/metasearch/images/{{s}}_small.png" alt="{{ s }}" />&nbsp;
+      {% endfor %}<br />
       <span class="displayurl">{{ i.displayurl|safe }}</span><br />
       <p>{{ i.snippet|safe }}</p>
       </li>
