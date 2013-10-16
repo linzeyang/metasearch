@@ -26,9 +26,10 @@
 
 5. Edit `urls.py` of that project:
     - In `patterns()` append the following line:
-        ```python
+        ```
         url(r'^metasearch/', include('metasearch.urls')),
         ```
+
 ## Getting it run:
 
 * If you are using Django's own development server, just run `manage.py` of your project and locate `http://your-domain:port/metasearch/` in your browser.
