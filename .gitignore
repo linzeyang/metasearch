@@ -2,7 +2,7 @@
 *.db
 *~
 
-mysite/
-static/
-templates/
+/mysite/
+/static/
+/templates/
 manage.py
