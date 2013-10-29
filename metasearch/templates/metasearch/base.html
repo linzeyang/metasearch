@@ -23,13 +23,15 @@
   </head>
 
   <body>
-    <div class="container" id="mainwrapper">
+    <div class="container">
 
+      <div id="content">
       {% block content %}
         <h1>content placeholder</h1>
       {% endblock %}
+      </div>
 
-      <div id="footer">
+      <footer id="footer">
         <p class="text-center">
           <a href="{% url 'metasearch:start' %}">START</a>&nbsp;&nbsp;&nbsp;
           <a href="{% url 'metasearch:about' %}">ABOUT</a>&nbsp;&nbsp;&nbsp;
@@ -44,12 +46,14 @@
           <a href="https://www.facebook.com/linzeyang" target="_blank"><img src="{% static 'metasearch/images/facebook.png'%}" alt="Facebook" /></a><br />
         </p>
         <p class="text-center">Powered by <a href="https://www.djangoproject.com" target="_blank">Django</a></p>
-      </div>
+      </footer>
 
     </div>
 
+    {% block local_body_script %}
     <script>
       $( document ).ready( onReady );
     </script>
+    {% endblock %}
   </body>
 </html>
