@@ -8,6 +8,7 @@ from metasearch.blekkoapi.views import get_item_list as blekko_get_item_list
 from metasearch.entwebapi.views import get_item_list as entweb_get_item_list
 from metasearch.texthandle.views import string_process, make_cluster
 
+
 def search(request):
     """
     Central function for request processing and response generation.
@@ -15,9 +16,9 @@ def search(request):
     """
     raw_query = request.GET.get('query', '')
     
-    show_bing = request.GET.has_key('bing')
-    show_blekko = request.GET.has_key('blekko')
-    show_entweb = request.GET.has_key('entweb')
+    show_bing = 'bing' in request.GET
+    show_blekko = 'blekko' in request.GET
+    show_entweb = 'entweb' in request.GET
     aggr = request.GET.get('aggr', '')
     cluster = request.GET.get('cluster', '')
     
@@ -112,7 +113,6 @@ def search(request):
                     }
                     )
         
-##################################################################################
 
 def validate(raw_query, show_bing, show_blekko, show_entweb, aggr):
     """
@@ -133,7 +133,6 @@ def validate(raw_query, show_bing, show_blekko, show_entweb, aggr):
     
     return errors
     
-##################################################################################
 
 def non_aggr_search(queries, show_bing, show_blekko, show_entweb, page):
     """
@@ -157,7 +156,6 @@ def non_aggr_search(queries, show_bing, show_blekko, show_entweb, page):
         
     return [bing_list, blekko_list, entweb_list]
     
-##################################################################################
 
 def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
     """
