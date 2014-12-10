@@ -67,6 +67,7 @@ stopword_list = ['a', 'about', 'above', 'across', 'after', 'again', 'against',\
 
 punctuations = '~`!@#$%^&*_+={}[]|:;"\',\.<>/?'
 
+
 def string_process(raw_string):
     """
     Normalize the query with support for Boolean operators.
@@ -77,7 +78,7 @@ def string_process(raw_string):
     blekko_tokens = []
     entweb_tokens = []
     add_not = False
-    
+
     for token in raw_tokens:
         if token == 'AND':
             pass
@@ -95,11 +96,12 @@ def string_process(raw_string):
             bing_tokens.append(token)
             blekko_tokens.append(token)
             entweb_tokens.append(token)
-    
-    return [urllib.quote(' '.join(bing_tokens)), 
-            urllib.quote(' '.join(blekko_tokens)), 
+
+    return [urllib.quote(' '.join(bing_tokens)),
+            urllib.quote(' '.join(blekko_tokens)),
             urllib.quote(' '.join(entweb_tokens))]
-            
+
+
 def snippet_process(snippet):
     """
     Split a snippet into a list of tokens, excluding stopwords.
@@ -112,21 +114,23 @@ def snippet_process(snippet):
 
         if not ((token in tokens) or (token in stopword_list) or (token == '')):
             tokens.append(token)
-    
+
     return tokens
-    
+
+
 def flatten(lis):
     """
     Flattens a list.
     Return the flattened list.
     """
-    if type(lis) != type([]):
+    if not isinstance(lis, list):
         return [lis]
 
     if lis == []:
         return lis
 
     return flatten(lis[0]) + flatten(lis[1:])
+
 
 def make_cluster(result_list):
     """
@@ -135,49 +139,54 @@ def make_cluster(result_list):
     """
     if result_list == []:
         return []
-    
+
     num_cluster = 3
     tokens_list = []
     clusters = []
-    
+
     for i in result_list:
         tokens_list.append(snippet_process(i.snippet))
-        
+
     while len(clusters) < num_cluster - 1:
         init_lenth = len(clusters)
         flat_tokens = flatten(tokens_list)
         token_dict = {}
-        
+
         for token in flat_tokens:
             if token in token_dict:
                 token_dict[token] += 1
             else:
                 token_dict[token] = 1
 
-        sorted_tokens = sorted(token_dict.items(), key=lambda t:t[1], reverse=True)
-                
+        sorted_tokens = sorted(token_dict.items(), key=lambda t: t[1],
+                               reverse=True)
+
         for token in sorted_tokens:
             if 0.3 * len(result_list) <= token[1] <= 0.7 * len(result_list):
-	            single_cluster = []
-	            rest_results = []
-	            rest_tokens_list = []
-                
-	            for tokens in tokens_list:
-		            if token[0] in tokens:
-			            single_cluster.append(result_list[tokens_list.index(tokens)])
-		            else:
-		                rest_results.append(result_list[tokens_list.index(tokens)])
-		                rest_tokens_list.append(tokens)
+                single_cluster = []
+                rest_results = []
+                rest_tokens_list = []
 
-	            clusters.append(single_cluster)
-	            result_list = rest_results
-	            tokens_list = rest_tokens_list
-	            break
+                for tokens in tokens_list:
+                    if token[0] in tokens:
+                        single_cluster.append(
+                            result_list[tokens_list.index(tokens)]
+                        )
+                    else:
+                        rest_results.append(
+                            result_list[tokens_list.index(tokens)]
+                        )
+                        rest_tokens_list.append(tokens)
+
+                clusters.append(single_cluster)
+                result_list = rest_results
+                tokens_list = rest_tokens_list
+                break
 
         if len(clusters) == init_lenth:
             clusters.append(result_list)
             break
-            
+
     clusters.append(result_list)
-    
+
     return clusters
