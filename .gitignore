@@ -1,8 +1,8 @@
-*.pyc
+*.py[cod]
 *.db
 *~
 
-/mysite/
-/static/
-/templates/
+env/
+
+mysite/
 manage.py

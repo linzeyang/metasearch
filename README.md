@@ -12,27 +12,25 @@
   
 ## Installation:
 
-1. Make sure the following software are installed in your system:
-    - Python 2.7.x ( http://python.org/download/ )
-    - Django 1.5.x ( https://www.djangoproject.com/download/ )
+1. Prerequisite:
+    - Python 2.7.x ( https://www.python.org )
+    - Django 1.6.x ( https://www.djangoproject.com )
+    - requests ( https://pypi.python.org/pypi/requests )
 
-2. Install the following Python package:
-    - requests 2.0.0 ( https://pypi.python.org/pypi/requests/2.0.0 )
-
-3. Create a new Django project or choose from one of your existing Django projects, then unzip "metasearch" folder into that project's root folder.
+2. Choose from one of your existing Django projects, or start a new Django project, then copy "metasearch" folder into that project's root folder.
 
 4. Edit the following sector in `settings.py` of that project:
     - In `INSTALLED_APPS` append 'metasearch'
 
 5. Edit `urls.py` of that project:
     - In `patterns()` append the following line:
-        ```
-        url(r'^metasearch/', include('metasearch.urls')),
+        ```python
+        url(r'^metasearch/', include('metasearch.urls', namespace="metasearch")),
         ```
 
-## Getting it run:
+## Getting it running:
 
-* If you are using Django's own development server, just run `manage.py` of your project and locate `http://your-domain:port/metasearch/` in your browser.
+* If you prefer Django's own development server, simply run `python manage.py runserver xxxx` (with xxxx replaced with your desired port) under your project's root directory and go to `http://your-domain:port/metasearch/` in your browser.
 
 * For Apache httpd server (only applicable for version 2.2.xx), in WSGI mode:
     1. Install `mod_wsgi` module for Apache. ( https://code.google.com/p/modwsgi/wiki/DownloadTheSoftware?tm=2 )
@@ -64,8 +62,7 @@
         </Files>
         </Directory>
         ```
-    3. Run Apache and locate `http://your-domain:port/metasearch/` in your browser. 
+    3. Run Apache and go to `http://your-domain:port/metasearch/` in your browser.
 
 ## Contact me:
-Zeyang Lin
 zeyanglin2013@gmail.com
