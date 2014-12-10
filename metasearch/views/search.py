@@ -3,10 +3,10 @@ from operator import attrgetter
 
 from django.shortcuts import render
 
-from metasearch.bingapi.views import get_item_list as bing_get_item_list
-from metasearch.blekkoapi.views import get_item_list as blekko_get_item_list
-from metasearch.entwebapi.views import get_item_list as entweb_get_item_list
-from metasearch.texthandle.views import string_process, make_cluster
+from metasearch.views.bingapi import get_item_list as bing_get_item_list
+from metasearch.views.blekkoapi import get_item_list as blekko_get_item_list
+from metasearch.views.entwebapi import get_item_list as entweb_get_item_list
+from metasearch.views.texthandle import string_process, make_cluster
 
 
 def search(request):
