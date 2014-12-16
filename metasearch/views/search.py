@@ -40,45 +40,50 @@ def search(request):
 
     if aggr == 'false' or aggr == '':
         lists = non_aggr_search(
-            queries, show_bing, show_blekko, show_entweb, page)
+            queries, show_bing, show_blekko, show_entweb, page
+        )
 
         if cluster == 'true':
             bing_clusters = make_cluster(lists[0])
             blekko_clusters = make_cluster(lists[1])
             entweb_clusters = make_cluster(lists[2])
 
-            return render(request, 'metasearch/results_nonaggr.html',
-                          {
-                              'raw_query': raw_query,
-                              'show_bing': show_bing,
-                              'show_blekko': show_blekko,
-                              'show_entweb': show_entweb,
-                              'cluster': True,
-                              'bing_clusters': bing_clusters,
-                              'blekko_clusters': blekko_clusters,
-                              'entweb_clusters': entweb_clusters,
-                              'full_path': full_path,
-                              'page_list': page_list,
-                              'current_page': page
-                          }
-                          )
+            return render(
+                request,
+                'metasearch/results_nonaggr.html',
+                {
+                    'raw_query': raw_query,
+                    'show_bing': show_bing,
+                    'show_blekko': show_blekko,
+                    'show_entweb': show_entweb,
+                    'cluster': True,
+                    'bing_clusters': bing_clusters,
+                    'blekko_clusters': blekko_clusters,
+                    'entweb_clusters': entweb_clusters,
+                    'full_path': full_path,
+                    'page_list': page_list,
+                    'current_page': page
+                }
+            )
 
         elif cluster == 'false' or cluster == '':
-            return render(request, 'metasearch/results_nonaggr.html',
-                          {
-                              'raw_query': raw_query,
-                              'show_bing': show_bing,
-                              'show_blekko': show_blekko,
-                              'show_entweb': show_entweb,
-                              'cluster': False,
-                              'bing_list': lists[0],
-                              'blekko_list': lists[1],
-                              'entweb_list': lists[2],
-                              'full_path': full_path,
-                              'page_list': page_list,
-                              'current_page': page
-                          }
-                          )
+            return render(
+                request,
+                'metasearch/results_nonaggr.html',
+                {
+                    'raw_query': raw_query,
+                    'show_bing': show_bing,
+                    'show_blekko': show_blekko,
+                    'show_entweb': show_entweb,
+                    'cluster': False,
+                    'bing_list': lists[0],
+                    'blekko_list': lists[1],
+                    'entweb_list': lists[2],
+                    'full_path': full_path,
+                    'page_list': page_list,
+                    'current_page': page
+                }
+            )
     elif aggr == 'true':
         result_list = aggr_search(
             queries, show_bing, show_blekko, show_entweb, page)
@@ -86,34 +91,37 @@ def search(request):
         if cluster == 'true':
             clusters = make_cluster(result_list)
 
-            return render(request, 'metasearch/results_aggr.html',
-                          {
-                              'raw_query': raw_query,
-                              'show_bing': show_bing,
-                              'show_blekko': show_blekko,
-                              'show_entweb': show_entweb,
-                              'cluster': True,
-                              'clusters': clusters,
-                              'full_path': full_path,
-                              'page_list': page_list,
-                              'current_page': page
-                          }
-                          )
+            return render(
+                request,
+                'metasearch/results_aggr.html',
+                {
+                    'raw_query': raw_query,
+                    'show_bing': show_bing,
+                    'show_blekko': show_blekko,
+                    'show_entweb': show_entweb,
+                    'cluster': True,
+                    'clusters': clusters,
+                    'full_path': full_path,
+                    'page_list': page_list,
+                    'current_page': page
+                }
+            )
 
         elif cluster == 'false' or cluster == '':
-            return render(request, 'metasearch/results_aggr.html',
-                          {
-                              'raw_query': raw_query,
-                              'show_bing': show_bing,
-                              'show_blekko': show_blekko,
-                              'show_entweb': show_entweb,
-                              'cluster': False,
-                              'result_list': result_list,
-                              'full_path': full_path,
-                              'page_list': page_list,
-                              'current_page': page
-                          }
-                          )
+            return render(
+                request, 'metasearch/results_aggr.html',
+                {
+                    'raw_query': raw_query,
+                    'show_bing': show_bing,
+                    'show_blekko': show_blekko,
+                    'show_entweb': show_entweb,
+                    'cluster': False,
+                    'result_list': result_list,
+                    'full_path': full_path,
+                    'page_list': page_list,
+                    'current_page': page
+                }
+            )
 
 
 def validate(raw_query, show_bing, show_blekko, show_entweb, aggr):
@@ -130,7 +138,9 @@ def validate(raw_query, show_bing, show_blekko, show_entweb, aggr):
 
     if not (show_bing or show_blekko or show_entweb):
         errors.append('ERROR: Choose at least one search engine!')
-    elif aggr == 'true' and ((not show_bing and not show_blekko) or (not show_blekko and not show_entweb) or (not show_bing and not show_entweb)):
+    elif aggr == 'true' and ((not show_bing and not show_blekko)
+                             or (not show_blekko and not show_entweb
+                                 ) or (not show_bing and not show_entweb)):
         errors.append("ERROR: Choose at lease two search engines"
                       "for aggregated results!")
 
@@ -174,7 +184,6 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
     aggr_page = 0
     engine_page = 0
 
-    ##########################################
     while aggr_page < page:
         if len(scored_list) < 100:
             engine_page += 1
@@ -193,7 +202,7 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
                 entweb_list = entweb_get_item_list(queries[2], engine_page, 50)
             else:
                 entweb_list = []
-            ##################################
+
             if aggr_page == 0:
                 for i in bing_list:
                     i.base_score[0] = 100.0 - bing_list.index(i)
@@ -203,7 +212,7 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
 
                 for k in entweb_list:
                     k.base_score[2] = 100.0 - entweb_list.index(k)
-            ##################################
+
             else:
                 bing_top_score = 0
                 blekko_top_score = 0
@@ -223,7 +232,8 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
                             entweb_top_score = i.base_score[2]
 
                 max_top_score = max(
-                    bing_top_score, blekko_top_score, entweb_top_score)
+                    bing_top_score, blekko_top_score, entweb_top_score
+                )
                 offset = 100.0 - max_top_score
 
                 for i in bing_list:
@@ -272,7 +282,6 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
                         i.base_score[2] * entwebWeight
                     ) * (3 - i.base_score.count(0.0))
 
-            ##################################
             while bing_list:
                 for i in blekko_list:
                     if i.url.lower() == bing_list[0].url.lower():
@@ -294,7 +303,7 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
                     bing_list[0].base_score[2] * entwebWeight
                 ) * (3 - bing_list[0].base_score.count(0.0))
                 scored_list.append(bing_list.pop(0))
-            ##################################
+
             while blekko_list:
                 for i in entweb_list:
                     if i.url.lower() == blekko_list[0].url.lower():
@@ -308,25 +317,25 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
                     blekko_list[0].base_score[2] * entwebWeight
                 ) * (3 - blekko_list[0].base_score.count(0.0))
                 scored_list.append(blekko_list.pop(0))
-            ##################################
+
             while entweb_list:
                 entweb_list[0].weighted_score = entweb_list[
                     0].base_score[2] * entwebWeight
                 scored_list.append(entweb_list.pop(0))
-            ##################################
+
             sorted_list = sorted(
-                scored_list, key=attrgetter('weighted_score'), reverse=True)
+                scored_list, key=attrgetter('weighted_score'), reverse=True
+            )
 
             result_list = sorted_list[0:50]
             scored_list = sorted_list[50:]
 
             aggr_page += 1
-        ##################################
+
         else:
             result_list = sorted_list[0:50]
             scored_list = sorted_list[50:]
 
             aggr_page += 1
 
-    ##########################################
     return result_list
