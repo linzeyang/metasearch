@@ -1,11 +1,6 @@
-# Create your views here.
-from operator import attrgetter
-
 from django.shortcuts import render
 
-from metasearch.views.bingapi import get_item_list as bing_get_item_list
-from metasearch.views.blekkoapi import get_item_list as blekko_get_item_list
-from metasearch.views.entwebapi import get_item_list as entweb_get_item_list
+from metasearch.views.apis import BingApi, BlekkoApi, EntwebApi
 from metasearch.views.texthandle import string_process, make_cluster
 
 
@@ -153,17 +148,17 @@ def non_aggr_search(queries, show_bing, show_blekko, show_entweb, page):
     Returns a list of three result lists
     """
     if show_bing:
-        bing_list = bing_get_item_list(queries[0], page, 10)
+        bing_list = BingApi.get_item_list(queries[0], page, 10)
     else:
         bing_list = []
 
     if show_blekko:
-        blekko_list = blekko_get_item_list(queries[1], page, 10)
+        blekko_list = BlekkoApi.get_item_list(queries[1], page, 10)
     else:
         blekko_list = []
 
     if show_entweb:
-        entweb_list = entweb_get_item_list(queries[2], page, 10)
+        entweb_list = EntwebApi.get_item_list(queries[2], page, 10)
     else:
         entweb_list = []
 
@@ -189,17 +184,23 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
             engine_page += 1
 
             if show_bing:
-                bing_list = bing_get_item_list(queries[0], engine_page, 50)
+                bing_list = BingApi.get_item_list(
+                    queries[0], engine_page, 50
+                )
             else:
                 bing_list = []
 
             if show_blekko:
-                blekko_list = blekko_get_item_list(queries[1], engine_page, 50)
+                blekko_list = BlekkoApi.get_item_list(
+                    queries[1], engine_page, 50
+                )
             else:
                 blekko_list = []
 
             if show_entweb:
-                entweb_list = entweb_get_item_list(queries[2], engine_page, 50)
+                entweb_list = EntwebApi.get_item_list(
+                    queries[2], engine_page, 50
+                )
             else:
                 entweb_list = []
 
@@ -324,7 +325,7 @@ def aggr_search(queries, show_bing, show_blekko, show_entweb, page):
                 scored_list.append(entweb_list.pop(0))
 
             sorted_list = sorted(
-                scored_list, key=attrgetter('weighted_score'), reverse=True
+                scored_list, key=lambda i: i.weighted_score, reverse=True
             )
 
             result_list = sorted_list[0:50]
