@@ -16,11 +16,11 @@ class Item(object):
 
 
 def get_json_obj(query, page_num, result_per_page):
-    base_url = 'http://blekko.com/ws/?auth=%s&q=%s+/json+/ps=%s&p=%s'
+    base_url = 'http://blekko.com/ws/?auth={}&q={}+/json+/ps={}&p={}'
     key = 'f4c8acf3'
     ps = result_per_page
     p = page_num - 1
-    url = base_url % (key, query, ps, p)
+    url = base_url.format(key, query, ps, p)
 
     return requests.get(url).json()
 

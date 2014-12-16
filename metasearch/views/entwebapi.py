@@ -16,12 +16,13 @@ class Item(object):
 
 
 def get_json_obj(query, page_num, result_per_page):
-    base_url = 'http://www.entireweb.com/xmlquery?pz=%s&ip=%s&q=%s&format=json&n=%s&of=%s'
+    base_url = "http://www.entireweb.com/xmlquery"
+    base_url += "?pz={}&ip={}&q={}&format=json&n={}&of={}"
     key = 'b954e0fe45f0929596268357988539e4'
     ip = '46.7.1.76'
     n = result_per_page
     of = (page_num - 1) * n
-    url = base_url % (key, ip, query, n, of)
+    url = base_url.format(key, ip, query, n, of)
 
     return requests.get(url).json()
 

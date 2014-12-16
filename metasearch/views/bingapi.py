@@ -16,11 +16,12 @@ class Item(object):
 
 
 def get_json_obj(query, page_num, result_per_page):
-    base_url = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%s%s%s&$format=json&$top=%s&$skip=%s'
-    key = 'D9qFt/S64oJyYDWeGIBxordSl1N28cubAeXQld7rSfE='
+    base_url = "https://api.datamarket.azure.com/Bing/SearchWeb/Web"
+    base_url += "?Query=%27{}%27&$format=json&$top={}&$skip={}"
+    key = 'tQbZUHxsuy+lQ+ud5WoXJMh4Ebl51WQx2wtbIkPKnBE='
     top = result_per_page
     skip = (page_num - 1) * top
-    url = base_url % ('%27', query, '%27', top, skip)
+    url = base_url.format(query, top, skip)
 
     return requests.get(url, auth=('', key)).json()
 
